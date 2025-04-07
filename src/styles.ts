@@ -1,0 +1,25 @@
+import styled, { createGlobalStyle } from 'styled-components'
+
+export const cores = {
+  vermelho: '#E66767',
+  bege: '#FFEBD9',
+  branco: '#FFFFFF',
+  fundoClaro: '#FFF8F2'
+}
+
+export const GlobalCss = createGlobalStyle`
+* {
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background-color: ${cores.fundoClaro};
+color:${cores.vermelho};
+}
+`
+export const Container = styled.div`
+  max-width: 1024px;
+  margin: 0 auto;
+`
