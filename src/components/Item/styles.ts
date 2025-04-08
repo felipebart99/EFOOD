@@ -7,9 +7,27 @@ export const Card = styled.div`
   height: 338px;
   margin-bottom: 40px;
   color: ${cores.branco};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   h3,
   p {
     padding: 5px;
+  }
+  p {
+    line-height: 22px;
+  }
+  button {
+    width: 95%;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: ${cores.bege};
+    color: ${cores.vermelho};
+    border: none;
+    height: 24px;
+  }
+  div {
+    padding-left: 10px;
   }
 `

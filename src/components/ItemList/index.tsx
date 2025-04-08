@@ -6,32 +6,32 @@ const ItemList = () => (
     <List>
       <Item
         title="Nome da Loja"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, vero! Eveniet aliquid id sint minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
+        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
         image="https://placehold.co/320x167"
       />
       <Item
         title="Nome da Loja"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, vero! Eveniet aliquid id sint minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
+        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
         image="https://placehold.co/320x167"
       />
       <Item
         title="Nome da Loja"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, vero! Eveniet aliquid id sint minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
+        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
         image="https://placehold.co/320x167"
       />
       <Item
         title="Nome da Loja"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, vero! Eveniet aliquid id sint minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
+        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
         image="https://placehold.co/320x167"
       />
       <Item
         title="Nome da Loja"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, vero! Eveniet aliquid id sint minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
+        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
         image="https://placehold.co/320x167"
       />
       <Item
         title="Nome da Loja"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, vero! Eveniet aliquid id sint minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
+        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
         image="https://placehold.co/320x167"
       />
     </List>

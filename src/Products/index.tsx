@@ -8,21 +8,25 @@ const Products = () => (
         title="Nome da Loja"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, vero! Eveniet aliquid id sint minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
         image="https://placehold.co/472x217"
+        avaliacao="4.9"
       />
       <Product
         title="Nome da Loja"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, vero! Eveniet aliquid id sint minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
         image="https://placehold.co/472x217"
+        avaliacao="4.9"
       />
       <Product
         title="Nome da Loja"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, vero! Eveniet aliquid id sint minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
         image="https://placehold.co/472x217"
+        avaliacao="4.9"
       />
       <Product
         title="Nome da Loja"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, vero! Eveniet aliquid id sint minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
         image="https://placehold.co/472x217"
+        avaliacao="4.9"
       />
     </List>
   </Container>
