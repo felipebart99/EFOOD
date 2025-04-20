@@ -30,4 +30,9 @@ export const Card = styled.div`
   div {
     padding-left: 10px;
   }
+  img {
+    width: 304px;
+    height: 167px;
+    margin-top: 8px;
+  }
 `

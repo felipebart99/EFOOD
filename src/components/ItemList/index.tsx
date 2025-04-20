@@ -1,38 +1,39 @@
 import Item from '../Item'
 import { Container, List } from './styles'
+import pizza from '../../assets/images/pizza.png'
 
 const ItemList = () => (
   <Container>
     <List>
       <Item
-        title="Nome da Loja"
-        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
-        image="https://placehold.co/320x167"
+        title="Pizza Marguerita"
+        description="A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!"
+        image={pizza}
       />
       <Item
-        title="Nome da Loja"
-        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
-        image="https://placehold.co/320x167"
+        title="Pizza Marguerita"
+        description="A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!"
+        image={pizza}
       />
       <Item
-        title="Nome da Loja"
-        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
-        image="https://placehold.co/320x167"
+        title="Pizza Marguerita"
+        description="A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!"
+        image={pizza}
       />
       <Item
-        title="Nome da Loja"
-        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
-        image="https://placehold.co/320x167"
+        title="Pizza Marguerita"
+        description="A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!"
+        image={pizza}
       />
       <Item
-        title="Nome da Loja"
-        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
-        image="https://placehold.co/320x167"
+        title="Pizza Marguerita"
+        description="A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!"
+        image={pizza}
       />
       <Item
-        title="Nome da Loja"
-        description="Lorem ipsum dolor sit minus perferendis ratione ipsa enim consequatur, vel molestiae, nihil perspiciatis exercitationem ipsum sapiente officia saepe dignissimos."
-        image="https://placehold.co/320x167"
+        title="Pizza Marguerita"
+        description="A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!"
+        image={pizza}
       />
     </List>
   </Container>

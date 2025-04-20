@@ -3,7 +3,7 @@ import { cores } from '../../styles'
 
 export const Rodape = styled.footer`
   background-color: ${cores.bege};
-  height: 300px;
+  height: 298px;
   text-align: center;
   display: flex;
   flex-direction: column;

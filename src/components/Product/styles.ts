@@ -15,6 +15,7 @@ export const Card = styled.div`
   }
   p {
     line-height: 22px;
+    padding-top: 0px;
   }
   button {
     margin-left: 10px;
@@ -25,6 +26,7 @@ export const Card = styled.div`
     color: ${cores.branco};
     border: none;
     height: 24px;
+    margin-bottom: 8px;
   }
   .principal {
     display: flex;
@@ -44,6 +46,7 @@ export const Card = styled.div`
     p {
       font-size: 18px;
       font-weight: 700;
+      padding-top: 10px;
     }
 
     img {
