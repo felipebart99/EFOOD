@@ -7,6 +7,7 @@ export const Card = styled.div`
   height: 398px;
   margin-bottom: 40px;
   position: relative;
+  border: 1px solid ${cores.vermelho};
 
   h3,
   p {
@@ -55,10 +56,14 @@ export const Card = styled.div`
     }
   }
 `
-export const Tag = styled.div`
+export const Infos = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;
+  display: flex;
+  gap: 8px;
+`
+export const Tag = styled.div`
   background-color: ${cores.vermelho};
   color: ${cores.branco};
   padding: 5px;
