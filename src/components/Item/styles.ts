@@ -26,6 +26,7 @@ export const Card = styled.div`
     color: ${cores.vermelho};
     border: none;
     height: 24px;
+    cursor: pointer;
   }
   div {
     padding-left: 10px;

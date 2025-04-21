@@ -28,6 +28,7 @@ export const Card = styled.div`
     border: none;
     height: 24px;
     margin-bottom: 8px;
+    cursor: pointer;
   }
   .principal {
     display: flex;
