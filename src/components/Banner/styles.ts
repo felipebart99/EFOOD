@@ -14,14 +14,13 @@ export const BannerSection = styled.div`
   h2 {
     position: absolute;
     top: 20px;
-    left: 170px;
     font-weight: 100;
-    font-weight: 100;
+    font-size: 32px;
   }
   h1 {
     position: absolute;
     bottom: 20px;
-    left: 170px;
     font-weight: 900;
+    font-size: 32px;
   }
 `

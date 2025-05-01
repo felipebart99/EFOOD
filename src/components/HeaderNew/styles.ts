@@ -22,3 +22,11 @@ export const LinkEstilizado = styled(Link)`
     text-decoration: underline;
   }
 `
+export const Container = styled.div`
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /* ou center, start, etc. */
+  align-items: center; /* alinha verticalmente no eixo cruzado */
+  width: 100%;
+`
