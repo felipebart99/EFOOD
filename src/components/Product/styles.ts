@@ -4,10 +4,19 @@ import { cores } from '../../styles'
 export const Card = styled.div`
   background-color: ${cores.branco};
   max-width: 472px;
+  width: 100%; // Adicione isso para garantir responsividade
   height: 398px;
   margin-bottom: 40px;
   position: relative;
   border: 1px solid ${cores.vermelho};
+  overflow: hidden; // Isso previne que a imagem vaze do container
+
+  img {
+    width: 100%; // Faz a imagem ocupar 100% da largura do card
+    height: 217px; // Altura fixa para as imagens
+    object-fit: cover; // Mantém a proporção e cobre o espaço
+    display: block; // Remove espaços embaixo da imagem
+  }
 
   h3,
   p {

@@ -6,3 +6,12 @@ export type MenuItem = {
   preco: number
   porcao: string
 }
+export interface Restaurant {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+}

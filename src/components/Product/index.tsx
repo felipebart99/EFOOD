@@ -3,13 +3,21 @@ import estrela from '../../assets/images/estrela.svg'
 import { Link } from 'react-router-dom'
 
 type Props = {
+  id: number
   title: string
   description: string
   image: string
-  avaliacao: string
+  avaliacao: number
   infos: string[]
 }
-const Product = ({ title, description, image, avaliacao, infos }: Props) => (
+const Product = ({
+  title,
+  description,
+  image,
+  avaliacao,
+  infos,
+  id
+}: Props) => (
   <Card>
     <img src={image} alt={title} />
     <div className="principal">
@@ -20,7 +28,11 @@ const Product = ({ title, description, image, avaliacao, infos }: Props) => (
       </div>
     </div>
 
-    <p>{description}</p>
+    <p>
+      {description.length > 240
+        ? `${description.slice(0, 240)}...`
+        : description}
+    </p>
     <Link to="/perfil">
       <button>Saiba Mais</button>
     </Link>
