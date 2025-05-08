@@ -33,7 +33,7 @@ const Product = ({
         ? `${description.slice(0, 240)}...`
         : description}
     </p>
-    <Link to="/perfil">
+    <Link to={`/perfil/${id}`}>
       <button>Saiba Mais</button>
     </Link>
     <Infos>
