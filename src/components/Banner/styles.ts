@@ -1,9 +1,7 @@
 import styled from 'styled-components'
-import banner from '../../assets/images/Banner.png'
 import { cores } from '../../styles'
 
 export const BannerSection = styled.div`
-  background-image: linear-gradient(#00000080, #00000080), url(${banner});
   background-size: cover;
   background-position: center;
   height: 300px;

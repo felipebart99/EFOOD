@@ -1,7 +1,7 @@
 // Item/index.tsx
 import { useState } from 'react'
 import { Card } from './styles'
-import Modal from '../Modal' // Criaremos este componente a seguir
+import Modal from '../Modal'
 
 type Props = {
   id: number

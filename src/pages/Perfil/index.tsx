@@ -57,7 +57,11 @@ const Perfil = () => {
     <>
       <div>
         <HeaderNew />
-        <Banner />
+        <Banner
+          image={restaurant.capa}
+          type={restaurant.tipo}
+          title={restaurant.titulo}
+        />
         <Container>
           <ItemList items={restaurant.cardapio} />
         </Container>
