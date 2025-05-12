@@ -1,10 +1,6 @@
 // Modal/index.tsx
-import {
-  ModalContainer,
-  ModalOverlay,
-  ModalContent,
-  ModalFooter
-} from './styles'
+import { ModalContainer, ModalOverlay, ModalContent, Button } from './styles'
+import closeIcon from '../../assets/images/close.png'
 
 type ModalProps = {
   isOpen: boolean
@@ -34,19 +30,19 @@ const Modal = ({
       <ModalContainer>
         <ModalContent>
           <img src={image} alt={title} />
-          <h2>{title}</h2>
-          <p>{description}</p>
-          <p>Serve: {porcao}</p>
-          <p>Preço: R$ {price.toFixed(2)}</p>
+          <div>
+            <h2>{title}</h2>
+            <p>{description}</p>
+            <p>Serve: de {porcao}</p>
+
+            <Button onClick={onConfirm}>
+              Adicionar ao carrinho - R$ {price.toFixed(2)}
+            </Button>
+          </div>
         </ModalContent>
-        <ModalFooter>
-          <button onClick={onClose} className="secondary">
-            Cancelar
-          </button>
-          <button onClick={onConfirm}>
-            Adicionar ao carrinho - R$ {price.toFixed(2)}
-          </button>
-        </ModalFooter>
+        <Button onClick={onClose} variant="secondary">
+          <img src={closeIcon} alt="Fechar" />
+        </Button>
       </ModalContainer>
     </ModalOverlay>
   )
