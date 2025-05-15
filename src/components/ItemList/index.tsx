@@ -1,5 +1,5 @@
 // ItemList/index.tsx
-import { useState, useEffect } from 'react'
+
 import Item from '../Item'
 import { Container, List } from './styles'
 import { MenuItem } from '../../types'
