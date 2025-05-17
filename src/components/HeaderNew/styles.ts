@@ -30,3 +30,14 @@ export const Container = styled.div`
   align-items: center; /* alinha verticalmente no eixo cruzado */
   width: 100%;
 `
+export const CartButton = styled.button`
+  color: ${cores.vermelho};
+  border: none;
+  background-color: transparent;
+  font-weight: 900;
+  font-size: 18px;
+  max-width: 100%;
+  width: 256px;
+  height: 21px;
+  cursor: pointer;
+`

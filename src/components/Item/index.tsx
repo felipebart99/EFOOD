@@ -33,13 +33,9 @@ const Item = ({ id, title, description, image, price, porcao }: Props) => {
       </Card>
 
       <Modal
+        id={id}
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        onConfirm={() => {
-          // Lógica para adicionar ao carrinho
-          console.log(`Adicionado: ${title}`)
-          setModalOpen(false)
-        }}
         title={title}
         description={description}
         price={price}
