@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { breakpoints } from '../styles'
 
 export const Container = styled.section`
   padding-top: 60px;
@@ -11,4 +12,8 @@ export const List = styled.ul`
   padding: 0;
   margin: 0;
   max-width: 100%;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `

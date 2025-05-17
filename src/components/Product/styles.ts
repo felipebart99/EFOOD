@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const Card = styled.div`
   background-color: ${cores.branco};
@@ -64,6 +64,10 @@ export const Card = styled.div`
       width: 21px;
       height: 21px;
     }
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    min-height: 450px;
   }
 `
 export const Infos = styled.div`

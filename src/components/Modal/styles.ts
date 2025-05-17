@@ -1,6 +1,6 @@
 // Modal/styles.ts
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -22,7 +22,10 @@ export const ModalContainer = styled.div`
   max-width: 1024px;
   width: 100%;
   height: 334px;
-  overflow-y: auto;
+  overflow-y: none;
+  @media (max-width: ${breakpoints.tablet}) {
+    min-height: 420px;
+  }
 `
 
 export const ModalContent = styled.div`

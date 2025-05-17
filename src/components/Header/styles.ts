@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import fundo from '../../assets/images/fundo.svg'
+import { breakpoints } from '../../styles'
 
 export const HeaderBar = styled.header`
   background-image: url(${fundo});
@@ -20,5 +21,9 @@ export const HeaderBar = styled.header`
     height: 84px;
     padding-top: 105px;
     margin-bottom: 40px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      padding-top: 25px;
+    }
   }
 `

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 import lixeira from '../../assets/images/lixeira.png'
 
 export const Overlay = styled.div`
@@ -28,6 +28,10 @@ export const Sidebar = styled.aside`
   width: 360px;
   height: 1624px;
   padding: 32px 8px 0px 8px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 330px;
+  }
 `
 export const ButtonSubmit = styled.button`
   max-width: 100%;
@@ -48,6 +52,10 @@ export const Prices = styled.p`
   display: flex;
   justify-content: space-between;
   margin: 32px 0 16px 0;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 300px;
+  }
 `
 export const CartItem = styled.li`
   display: flex;
