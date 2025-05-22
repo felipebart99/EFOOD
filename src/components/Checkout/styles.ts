@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { breakpoints, cores } from '../../styles'
-import lixeira from '../../assets/images/lixeira.png'
 
 export const Overlay = styled.div`
   position: absolute;
@@ -29,6 +28,12 @@ export const Sidebar = styled.aside`
   height: 1624px;
   padding: 32px 8px 0px 8px;
 
+  h1 {
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
   @media (max-width: ${breakpoints.tablet}) {
     width: 330px;
   }
@@ -42,52 +47,47 @@ export const ButtonSubmit = styled.button`
   font-size: 14px;
   font-weight: 700;
   border: none;
+  margin-bottom: 8px;
   cursor: pointer;
 `
+export const InputGroup = styled.div`
+  label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+  }
 
-export const Prices = styled.p`
-  width: 344px;
-  height: 16px;
-  font-weight: 700;
-  font-size: 14px;
-  display: flex;
-  justify-content: space-between;
-  margin: 32px 0 16px 0;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 300px;
+  input {
+    width: 100%;
+    max-width: 344px; /* Largura máxima padrão */
+    height: 32px;
+    background-color: ${cores.bege};
+    color: #000;
+    border: 1px solid ${cores.bege};
+    margin-bottom: 8px;
+    padding: 0 8px;
   }
 `
-export const CartItem = styled.li`
-  display: flex;
-  background-color: ${cores.bege};
-  padding: 8px;
-  color: ${cores.vermelho};
-  margin-bottom: 16px;
-  position: relative;
 
-  img {
-    height: 80px;
-    width: 80px;
-    object-fit: cover;
-    margin-right: 8px;
+export const Row = styled.div`
+  display: flex;
+
+  ${InputGroup} {
+    flex: 1; /* Faz os inputs ocuparem espaço igual */
+
+    input {
+      width: 100%; /* Ocupa toda a largura disponível */
+      max-width: 155px; /* Largura máxima para campos pequenos como CEP */
+    }
   }
-  h3 {
-    font-weight: 900;
-    font-size: 18px;
-    margin-bottom: 16px;
-  }
-  button {
-    background-image: url(${lixeira});
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    width: 16px;
-    height: 16px;
-    border: none;
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    cursor: pointer;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+    gap: 16px;
+
+    ${InputGroup} input {
+      max-width: 100%; /* Em mobile, ocupa toda a largura */
+    }
   }
 `
