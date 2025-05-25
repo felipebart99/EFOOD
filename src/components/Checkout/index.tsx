@@ -1,3 +1,4 @@
+// Checkout/index.tsx
 import { useFormik } from 'formik'
 import {
   ButtonSubmit,
@@ -5,54 +6,80 @@ import {
   InputGroup,
   Overlay,
   Row,
-  Sidebar
+  Sidebar,
+  SuccessMessage
 } from './styles'
 import * as Yup from 'yup'
 import { useState } from 'react'
+
 const Checkout = () => {
+  const [payCardOpen, setPayCardOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [paymentCompleted, setPaymentCompleted] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
+
   const form = useFormik({
     initialValues: {
+      // Dados de entrega
       receiver: '',
       address: '',
       city: '',
       zipCode: '',
       number: '',
-      complement: ''
+      complement: '',
+      // Dados do cartão
+      cardName: '',
+      cardNumber: '',
+      cardCode: '',
+      cardMonth: '',
+      cardYear: ''
     },
     validationSchema: Yup.object({
+      // Validação dos dados de entrega
       receiver: Yup.string()
         .min(5, 'O nome precisa ter no mínimo 5 caracteres')
         .max(100, 'O nome não pode ter mais de 100 caracteres')
         .required('O campo é obrigatório'),
-
       address: Yup.string()
         .min(5, 'O endereço precisa ter no mínimo 5 caracteres')
         .max(200, 'O endereço não pode ter mais de 200 caracteres')
         .required('O campo é obrigatório'),
-
       city: Yup.string()
         .min(3, 'A cidade precisa ter no mínimo 3 caracteres')
         .max(100, 'A cidade não pode ter mais de 100 caracteres')
         .required('O campo é obrigatório'),
-
       zipCode: Yup.string()
         .matches(
           /^\d{5}-?\d{3}$/,
           'CEP inválido (formato esperado: 00000-000 ou 00000000)'
         )
         .required('O campo é obrigatório'),
-
       number: Yup.string()
         .matches(/^\d+$/, 'Apenas números são permitidos')
         .required('O campo é obrigatório'),
-
       complement: Yup.string().max(
         100,
         'O complemento não pode ter mais de 100 caracteres'
-      )
+      ),
+      // Validação dos dados do cartão
+      cardName: Yup.string()
+        .min(5, 'O nome no cartão precisa ter no mínimo 5 caracteres')
+        .required('O campo é obrigatório'),
+      cardNumber: Yup.string()
+        .matches(/^\d{16}$/, 'O número do cartão deve ter 16 dígitos')
+        .required('O campo é obrigatório'),
+      cardCode: Yup.string()
+        .matches(/^\d{3}$/, 'O CVV deve ter 3 dígitos')
+        .required('O campo é obrigatório'),
+      cardMonth: Yup.string()
+        .matches(/^(0[1-9]|1[0-2])$/, 'Mês inválido (01-12)')
+        .required('O campo é obrigatório'),
+      cardYear: Yup.string()
+        .matches(/^\d{4}$/, 'Ano inválido (formato: YYYY)')
+        .required('O campo é obrigatório')
     }),
-    onSubmit: (values) => {
-      console.log(values)
+    onSubmit: async () => {
+      await handleFinalizePayment()
     }
   })
 
@@ -64,7 +91,116 @@ const Checkout = () => {
     return ''
   }
 
-  const [payCardOpen, setpayCardOpen] = useState(false)
+  const isDeliveryValid = () => {
+    const requiredFields = ['receiver', 'address', 'city', 'zipCode', 'number']
+    return requiredFields.every(
+      (field) =>
+        form.values[field as keyof typeof form.values] &&
+        !form.errors[field as keyof typeof form.errors]
+    )
+  }
+
+  const handleFinalizePayment = async () => {
+    const errors = await form.validateForm()
+    if (Object.keys(errors).length > 0) {
+      form.setTouched({
+        ...form.touched,
+        cardName: true,
+        cardNumber: true,
+        cardCode: true,
+        cardMonth: true,
+        cardYear: true
+      })
+      return
+    }
+
+    setIsLoading(true)
+
+    try {
+      const payload = {
+        products: [{ id: 1, price: 190.9 }], // Substitua pelos dados reais do carrinho
+        delivery: {
+          receiver: form.values.receiver,
+          address: {
+            description: form.values.address,
+            city: form.values.city,
+            zipCode: form.values.zipCode,
+            number: Number(form.values.number),
+            complement: form.values.complement || ''
+          }
+        },
+        payment: {
+          card: {
+            name: form.values.cardName,
+            number: form.values.cardNumber,
+            code: Number(form.values.cardCode),
+            expires: {
+              month: Number(form.values.cardMonth),
+              year: Number(form.values.cardYear)
+            }
+          }
+        }
+      }
+
+      const response = await fetch(
+        'https://fake-api-tau.vercel.app/api/efood/checkout',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`)
+      }
+
+      setPaymentCompleted(true)
+    } catch (error) {
+      console.error('Falha no pagamento:', error)
+      alert('Falha ao processar pagamento. Tente novamente.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  if (!isOpen) return null
+  if (paymentCompleted) {
+    return (
+      <CartContainer>
+        <Overlay />
+        <Sidebar>
+          <SuccessMessage>
+            <h2>Pedido realizado - ORDER_ID</h2>
+            <p>
+              Estamos felizes em informar que seu pedido já está em processo de
+              preparação e, em breve, será entregue no endereço fornecido.
+              <br />
+              <br />
+              Gostaríamos de ressaltar que nossos entregadores não estão
+              autorizados a realizar cobranças extras. <br />
+              <br />
+              Lembre-se da importância de higienizar as mãos após o recebimento
+              do pedido, garantindo assim sua segurança e bem-estar durante a
+              refeição. <br />
+              <br />
+              Esperamos que desfrute de uma deliciosa e agradável experiência
+              gastronômica. Bom apetite!
+            </p>
+          </SuccessMessage>
+          <ButtonSubmit
+            type="button"
+            onClick={() => setIsOpen(false)}
+            disabled={isLoading}
+          >
+            Concluir
+          </ButtonSubmit>
+        </Sidebar>
+      </CartContainer>
+    )
+  }
 
   return (
     <form onSubmit={form.handleSubmit}>
@@ -76,86 +212,98 @@ const Checkout = () => {
               <h1>Pagamento - Valor a pagar R$ 190,90</h1>
               <div>
                 <InputGroup>
-                  <label htmlFor="receiver">Quem irá receber</label>
+                  <label htmlFor="cardName">Nome no cartão</label>
                   <input
-                    id="receiver"
+                    id="cardName"
                     type="text"
-                    name="receiver"
-                    value={form.values.receiver}
+                    name="cardName"
+                    value={form.values.cardName}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                   />
                   <small>
-                    {getErrorMessage('receiver', form.errors.receiver)}
+                    {getErrorMessage('cardName', form.errors.cardName)}
                   </small>
                 </InputGroup>
                 <Row>
                   <InputGroup>
-                    <label htmlFor="zipCode">CEP</label>
+                    <label htmlFor="cardNumber">Número do cartão</label>
                     <input
-                      id="zipCode"
+                      id="cardNumber"
                       type="text"
-                      name="zipCode"
-                      value={form.values.zipCode}
+                      name="cardNumber"
+                      value={form.values.cardNumber}
                       onChange={form.handleChange}
                       onBlur={form.handleBlur}
+                      maxLength={16}
                     />
-                    <br />
                     <small>
-                      {getErrorMessage('zipCode', form.errors.zipCode)}
+                      {getErrorMessage('cardNumber', form.errors.cardNumber)}
                     </small>
                   </InputGroup>
                   <InputGroup>
-                    <label htmlFor="number">Número</label>
+                    <label htmlFor="cardCode">CVV</label>
                     <input
-                      id="number"
+                      id="cardCode"
                       type="text"
-                      name="number"
-                      value={form.values.number}
+                      name="cardCode"
+                      value={form.values.cardCode}
                       onChange={form.handleChange}
                       onBlur={form.handleBlur}
+                      maxLength={3}
                     />
-                    <br />
                     <small>
-                      {getErrorMessage('number', form.errors.number)}
+                      {getErrorMessage('cardCode', form.errors.cardCode)}
                     </small>
                   </InputGroup>
                 </Row>
                 <Row>
                   <InputGroup>
-                    <label htmlFor="zipCode">CEP</label>
+                    <label htmlFor="cardMonth">Mês de vencimento</label>
                     <input
-                      id="zipCode"
+                      id="cardMonth"
                       type="text"
-                      name="zipCode"
-                      value={form.values.zipCode}
+                      name="cardMonth"
+                      value={form.values.cardMonth}
                       onChange={form.handleChange}
                       onBlur={form.handleBlur}
+                      placeholder="MM"
+                      maxLength={2}
                     />
-                    <br />
                     <small>
-                      {getErrorMessage('zipCode', form.errors.zipCode)}
+                      {getErrorMessage('cardMonth', form.errors.cardMonth)}
                     </small>
                   </InputGroup>
                   <InputGroup>
-                    <label htmlFor="number">Número</label>
+                    <label htmlFor="cardYear">Ano de vencimento</label>
                     <input
-                      id="number"
+                      id="cardYear"
                       type="text"
-                      name="number"
-                      value={form.values.number}
+                      name="cardYear"
+                      value={form.values.cardYear}
                       onChange={form.handleChange}
                       onBlur={form.handleBlur}
+                      placeholder="AAAA"
+                      maxLength={4}
                     />
-                    <br />
                     <small>
-                      {getErrorMessage('number', form.errors.number)}
+                      {getErrorMessage('cardYear', form.errors.cardYear)}
                     </small>
                   </InputGroup>
                 </Row>
               </div>
-              <ButtonSubmit>Finalizar pagamento</ButtonSubmit>
-              <ButtonSubmit onClick={() => setpayCardOpen(false)}>
+              <ButtonSubmit
+                type="button"
+                onClick={handleFinalizePayment}
+                disabled={isLoading}
+              >
+                {isLoading ? 'Processando...' : 'Finalizar pagamento'}
+              </ButtonSubmit>
+              <ButtonSubmit
+                type="button"
+                onClick={() => setPayCardOpen(false)}
+                disabled={isLoading}
+              >
                 Voltar para edição de endereço
               </ButtonSubmit>
             </>
@@ -214,7 +362,6 @@ const Checkout = () => {
                       onChange={form.handleChange}
                       onBlur={form.handleBlur}
                     />
-                    <br />
                     <small>
                       {getErrorMessage('zipCode', form.errors.zipCode)}
                     </small>
@@ -229,14 +376,13 @@ const Checkout = () => {
                       onChange={form.handleChange}
                       onBlur={form.handleBlur}
                     />
-                    <br />
                     <small>
                       {getErrorMessage('number', form.errors.number)}
                     </small>
                   </InputGroup>
                 </Row>
                 <InputGroup>
-                  <label htmlFor="complement">Complemento(opcional)</label>
+                  <label htmlFor="complement">Complemento (opcional)</label>
                   <input
                     id="complement"
                     type="text"
@@ -250,10 +396,15 @@ const Checkout = () => {
                   </small>
                 </InputGroup>
               </div>
-              <ButtonSubmit onClick={() => setpayCardOpen(true)}>
+              <ButtonSubmit
+                type="button"
+                onClick={() => setPayCardOpen(true)}
+                disabled={!isDeliveryValid()}
+                className={!isDeliveryValid() ? 'disabled' : ''}
+              >
                 Continuar com o pagamento
               </ButtonSubmit>
-              <ButtonSubmit>Voltar para o carrinho</ButtonSubmit>
+              <ButtonSubmit type="button">Voltar para o carrinho</ButtonSubmit>
             </>
           )}
         </Sidebar>
@@ -261,4 +412,5 @@ const Checkout = () => {
     </form>
   )
 }
+
 export default Checkout

@@ -49,7 +49,33 @@ export const ButtonSubmit = styled.button`
   border: none;
   margin-bottom: 8px;
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.disabled {
+    background-color: #ccc;
+    color: #666;
+  }
 `
+export const SuccessMessage = styled.div`
+  text-align: center;
+  padding: 40px 0;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+`
+
 export const InputGroup = styled.div`
   label {
     font-size: 14px;
