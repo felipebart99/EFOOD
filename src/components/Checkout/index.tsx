@@ -11,12 +11,32 @@ import {
 } from './styles'
 import * as Yup from 'yup'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { open, clear } from '../../store/reducers/cart'
+import { formatPrice } from '../../utils/formatPrice'
+import { v4 as uuidv4 } from 'uuid'
 
-const Checkout = () => {
+interface CheckoutProps {
+  onClose: () => void
+  totalPrice: number
+}
+
+const Checkout = ({ onClose, totalPrice }: CheckoutProps) => {
   const [payCardOpen, setPayCardOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [paymentCompleted, setPaymentCompleted] = useState(false)
   const [isOpen, setIsOpen] = useState(true)
+
+  const dispatch = useDispatch()
+
+  const openCart = () => {
+    dispatch(open())
+    onClose()
+  }
+  const clearCart = () => {
+    dispatch(clear())
+  }
+  const [orderId, setOrderId] = useState('')
 
   const form = useFormik({
     initialValues: {
@@ -156,7 +176,7 @@ const Checkout = () => {
       if (!response.ok) {
         throw new Error(`Erro HTTP: ${response.status}`)
       }
-
+      setOrderId(`ORD-${uuidv4().split('-')[0]}`.toUpperCase())
       setPaymentCompleted(true)
     } catch (error) {
       console.error('Falha no pagamento:', error)
@@ -173,26 +193,31 @@ const Checkout = () => {
         <Overlay />
         <Sidebar>
           <SuccessMessage>
-            <h2>Pedido realizado - ORDER_ID</h2>
+            <h2>Pedido realizado - {orderId}</h2>
             <p>
               Estamos felizes em informar que seu pedido já está em processo de
               preparação e, em breve, será entregue no endereço fornecido.
-              <br />
-              <br />
+            </p>
+            <p>
               Gostaríamos de ressaltar que nossos entregadores não estão
-              autorizados a realizar cobranças extras. <br />
-              <br />
+              autorizados a realizar cobranças extras.
+            </p>
+            <p>
               Lembre-se da importância de higienizar as mãos após o recebimento
               do pedido, garantindo assim sua segurança e bem-estar durante a
-              refeição. <br />
-              <br />
+              refeição.
+            </p>
+            <p>
               Esperamos que desfrute de uma deliciosa e agradável experiência
               gastronômica. Bom apetite!
             </p>
           </SuccessMessage>
           <ButtonSubmit
             type="button"
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              onClose() // Fecha o modal/checkout
+              clearCart() // Limpa o carrinho
+            }}
             disabled={isLoading}
           >
             Concluir
@@ -209,7 +234,7 @@ const Checkout = () => {
         <Sidebar>
           {payCardOpen ? (
             <>
-              <h1>Pagamento - Valor a pagar R$ 190,90</h1>
+              <h1>Pagamento - Valor a pagar {formatPrice(totalPrice)}</h1>
               <div>
                 <InputGroup>
                   <label htmlFor="cardName">Nome no cartão</label>
@@ -404,7 +429,9 @@ const Checkout = () => {
               >
                 Continuar com o pagamento
               </ButtonSubmit>
-              <ButtonSubmit type="button">Voltar para o carrinho</ButtonSubmit>
+              <ButtonSubmit type="button" onClick={openCart}>
+                Voltar para o carrinho
+              </ButtonSubmit>
             </>
           )}
         </Sidebar>

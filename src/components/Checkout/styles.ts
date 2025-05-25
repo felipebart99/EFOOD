@@ -8,7 +8,7 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: #000;
-  opacity: 0.8;
+  opacity: 0;
 `
 export const CartContainer = styled.div`
   position: fixed;
@@ -61,18 +61,19 @@ export const ButtonSubmit = styled.button`
   }
 `
 export const SuccessMessage = styled.div`
-  text-align: center;
-  padding: 40px 0;
+  padding: 0;
 
   h2 {
     font-size: 16px;
     font-weight: 700;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
   }
 
   p {
     font-size: 14px;
     line-height: 22px;
+    margin-bottom: 24px;
+    text-align: left;
   }
 `
 
