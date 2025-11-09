@@ -25,7 +25,8 @@ const Checkout = ({ onClose, totalPrice }: CheckoutProps) => {
   const [payCardOpen, setPayCardOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [paymentCompleted, setPaymentCompleted] = useState(false)
-  const [isOpen, setIsOpen] = useState(true)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isOpen, setIsOpen] = useState(false)
 
   const dispatch = useDispatch()
 
